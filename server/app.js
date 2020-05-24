@@ -5,7 +5,12 @@ const { MONGOURI } = require('./keys');
 const PORT = 5000;
 // app => valid request handler
 
-require('./models/user');
+
+require('./models/user'); // mongoose model
+
+app.use(express.json()); // every request has to be json request
+app.use(require('./routes/auth'));
+
 
 mongoose.connect(MONGOURI, {
    useUnifiedTopology: true,
@@ -17,10 +22,6 @@ mongoose.connection.on('connected', () => {
 
 mongoose.connection.on('error', (err) => {
    console.log(err);
-});
-
-app.get('/', (req, res) => {
-   res.send("Hello World");
 });
 
 app.listen(PORT, () => {
