@@ -1,7 +1,7 @@
 const express = require('express'); // import express , export function
 const router = express.Router();
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const User = mongoose.model('User');
 
 router.get('/', (req, res) => {
@@ -24,17 +24,23 @@ router.post('/signup', (req, res) => {
       }
       // there is no email already registerd email
       else {
-         const user = new User({
-            email, name, password
-         });
+         // hashed after save data
+         bcrypt.hash(password, 12).then(
+            hashedPassword => {
+               const user = new User({
+                  email, name, password: hashedPassword,
+               });
 
-         user.save()
-            .then(user => {
-               res.json({ message: "Saved successfully" });
-            })
-            .catch(err => {
-               console.log(err);
-            })
+               user.save()
+                  .then(user => {
+                     res.json({ message: "Saved successfully" });
+                  })
+                  .catch(err => {
+                     console.log(err);
+                  })
+            }
+         );
+
       }
    }).catch(err => { console.log(err); });
 });
