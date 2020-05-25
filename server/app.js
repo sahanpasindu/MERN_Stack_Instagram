@@ -7,9 +7,11 @@ const PORT = 5000;
 
 
 require('./models/user'); // mongoose model
+require('./models/post'); // mongoose model
 
 app.use(express.json()); // every request has to be json request
 app.use(require('./routes/auth'));
+app.use(require('./routes/post'));
 
 
 mongoose.connect(MONGOURI, {
