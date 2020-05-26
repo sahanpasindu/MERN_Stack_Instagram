@@ -10,9 +10,15 @@ a {
   color: black !important;
 }
 
+/* Home Screen Styles */
 .home-card {
-  min-width: 500px;
+  max-width: 500px;
   height: max-content;
+  margin: auto;
+}
+
+.home {
+  margin-top: 60px;
 }
 
 /* Auth Screens [signin,signup] Styles */
