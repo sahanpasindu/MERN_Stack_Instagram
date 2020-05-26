@@ -5,12 +5,14 @@ import Navbar from './components/Navbar';
 import "./App.css";
 
 import Home from './components/screens/Home';
-import Signin from './components/screens/Login';
+import Signin from './components/screens/Signin';
 import Signup from './components/screens/Signup';
 import Profile from './components/screens/Profile';
 
+
 function App() {
   return (
+    // Browser Router also a component
     <BrowserRouter>
       <Navbar />
       <Route exact path="/"><Home /></Route>
