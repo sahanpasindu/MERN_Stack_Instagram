@@ -61,3 +61,7 @@ a {
 .gallery-item {
   width: 30%;
 }
+
+/* Materialize css overide */
+
+#toast-container {}

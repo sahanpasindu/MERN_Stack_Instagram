@@ -3,11 +3,14 @@ const app = express(); // create express aplication, initialize new object
 const mongoose = require('mongoose');
 const { MONGOURI } = require('./keys');
 const PORT = 5000;
+const cors = require('cors')
 // app => valid request handler
 
 
 require('./models/user'); // mongoose model
 require('./models/post'); // mongoose model
+
+app.use(cors()); //Access-Control-Allow-Origin 
 
 app.use(express.json()); // every request has to be json request
 app.use(require('./routes/auth'));
