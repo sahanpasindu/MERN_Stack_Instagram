@@ -18,10 +18,11 @@ router.get('/allposts', (req, res) => {
 });
 
 router.post('/createpost', requireLogin, (req, res) => {
-   const { title, body } = req.body;
+   const { title, body, pic } = req.body;
 
+   console.log(title, body, pic);
    // if required fields are missing
-   if (!title || !body) {
+   if (!title || !body || !pic) {
       return res.status(422).json({ error: "Please add all the fields" });
    }
    // create modal with user data
@@ -29,6 +30,7 @@ router.post('/createpost', requireLogin, (req, res) => {
    const post = new Post({
       title,
       body,
+      photo: pic,
       postedBy: req.user
    });
    // save post in database

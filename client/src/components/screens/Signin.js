@@ -27,6 +27,9 @@ const Signin = () => {
                if (data.error) {
                   M.toast({ html: data.error, classes: " red darken-4" });
                } else {
+                  localStorage.setItem("jwt", data.token);
+                  localStorage.setItem("user", JSON.stringify(data.user));
+
                   M.toast({ html: "Signed in Success", classes: " green darken-3" });
                   history.push('/');
                }
