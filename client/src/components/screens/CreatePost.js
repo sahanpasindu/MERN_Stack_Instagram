@@ -28,7 +28,7 @@ const CreatePost = () => {
 
    // use effect kicking after url update (goal => after image upload, post upload to server)
    useEffect(() => {
-      // useEffect also kicking compnonent intialize, we need prevent that
+      // useEffect also kicking compnonent intialize (1st time render), so we have to prevent post creation untill we have an image url, we can prevent that using a logic
       if (url) {
          fetch(
             "http://localhost:5000/createpost",
@@ -55,7 +55,7 @@ const CreatePost = () => {
                console.log(err);
             });
       }
-   }, [url])
+   }, [url]) // according to url change this useEffect will run, useEffect always called after state change, so we have to limit post create after url is available, meaning the image has been uploaded. and then we are put our new post in the database
 
    return (
       <div className="card input-field" style={{
