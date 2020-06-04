@@ -29,7 +29,6 @@ const Routing = () => {
     } else {
       history.push("/signin");
     }
-    console.log(user);
   }, []); // empty array mean useEffect only run one time, component load (compoentDidMount lifesycle)
   // switch ensure only one route
   return (
