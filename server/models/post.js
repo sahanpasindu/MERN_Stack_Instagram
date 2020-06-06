@@ -1,25 +1,24 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema.Types;
 
-const postScheam = new mongoose.Schema(
-   {
-      title: {
-         type: String,
-         required: true,
-      },
-      body: {
-         type: String,
-         required: true,
-      },
-      photo: {
-         type: String,
-         required: true,
-      },
-      postedBy: {
-         type: ObjectId,
-         ref: "User",
-      }
-   }
-);
+const postScheam = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  body: {
+    type: String,
+    required: true,
+  },
+  photo: {
+    type: String,
+    required: true,
+  },
+  likes: [{ type: ObjectId, ref: "User" }],
+  postedBy: {
+    type: ObjectId,
+    ref: "User",
+  },
+});
 
-mongoose.model('Post', postScheam);
+mongoose.model("Post", postScheam);

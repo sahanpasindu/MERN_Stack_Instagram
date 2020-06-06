@@ -25,7 +25,6 @@ const Routing = () => {
     if (user) {
       dispatch({ type: "USER", payload: user });
       console.log("useEffect - before push / route ");
-      history.push("/");
     } else {
       history.push("/signin");
     }

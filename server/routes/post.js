@@ -54,4 +54,40 @@ router.get("/mypost", requireLogin, (req, res) => {
     });
 });
 
+router.put("/like", requireLogin, (req, res) => {
+  Post.findByIdAndUpdate(
+    req.body.postId,
+    {
+      $push: { likes: req.user._id },
+    },
+    {
+      new: true, // this is because mongo will need to pass updated record
+    }
+  ).exec((err, result) => {
+    if (err) {
+      return res.status(422).json({ error: err });
+    } else {
+      return res.json(result);
+    }
+  });
+});
+
+router.put("/unlike", requireLogin, (req, res) => {
+  Post.findByIdAndUpdate(
+    req.body.postId,
+    {
+      $pull: { likes: req.user._id },
+    },
+    {
+      new: true, // this is because mongo will need to pass updated record
+    }
+  ).exec((err, result) => {
+    if (err) {
+      return res.status(422).json({ error: err });
+    } else {
+      return res.json(result);
+    }
+  });
+});
+
 module.exports = router;
